@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FirebaseTools.iml" filepath="$PROJECT_DIR$/FirebaseTools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FirebaseToolsApp.iml" filepath="$PROJECT_DIR$/FirebaseToolsApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

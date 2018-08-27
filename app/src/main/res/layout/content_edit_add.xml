@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="fandradetecinfo.com.firebasetools.EditAddActivity"
+    tools:showIn="@layout/activity_edit_add">
+
+    <EditText
+        android:id="@+id/edtDocId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="none"
+        android:tooltipText="Doc ID" />
+
+    <EditText
+        android:id="@+id/edtNome2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtDocId"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:ems="10"
+        android:hint="nome"
+        android:inputType="textPersonName"
+        android:tooltipText="Nome" />
+
+    <EditText
+        android:id="@+id/edtEmail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_below="@+id/edtNome2"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:tooltipText="Email" />
+
+    <EditText
+        android:id="@+id/edtDataNascimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_below="@+id/edtEmail2"
+        android:ems="10"
+        android:hint="data de nascimento"
+        android:inputType="date"
+        android:tooltipText="Email" />
+
+    <EditText
+        android:id="@+id/edtUid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_below="@+id/edtDataNascimento"
+        android:ems="10"
+        android:inputType="none"
+        android:tooltipText="Email" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_below="@+id/edtUid"
+        android:layout_marginTop="23dp"
+        android:onClick="Salvar"
+        android:text="Salvar" />
+
+</RelativeLayout>

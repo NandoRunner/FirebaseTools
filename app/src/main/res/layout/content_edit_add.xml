@@ -20,7 +20,7 @@
         android:tooltipText="Doc ID" />
 
     <EditText
-        android:id="@+id/edtNome2"
+        android:id="@+id/edtNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtDocId"
@@ -32,7 +32,7 @@
         android:tooltipText="Nome" />
 
     <EditText
-        android:id="@+id/edtEmail2"
+        android:id="@+id/edtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

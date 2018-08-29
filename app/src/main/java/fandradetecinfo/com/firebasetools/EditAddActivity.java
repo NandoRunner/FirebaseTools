@@ -27,6 +27,7 @@ public class EditAddActivity extends _BaseActivity {
 
     EditText ed1;
     EditText ed2;
+    EditText ed3;
 
     TextView tv;
 
@@ -36,14 +37,6 @@ public class EditAddActivity extends _BaseActivity {
         setContentView(R.layout.activity_edit_add);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
-        tv = (TextView) findViewById(R.id.txtbusca);
-
-        docRef = FirebaseFirestore.getInstance().document("sampleData/pessoas");
-
-
     }
 
     @Override
@@ -77,8 +70,8 @@ public class EditAddActivity extends _BaseActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot.exists())
                 {
-                    String nome = documentSnapshot.getString(NOME_KEY);
-                    String idade = documentSnapshot.getString(IDADE_KEY);
+                    String nome = documentSnapshot.getString("nome");
+                    String idade = "41";
 
                     tv.setText(nome + " tem " + idade + " anos!");
                 }
@@ -94,51 +87,24 @@ public class EditAddActivity extends _BaseActivity {
     {
 
 
-        ed1 = (EditText) findViewById(R.id.edtNome2);
-        ed2 = (EditText) findViewById(R.id.edt);
-
         String nome = ed1.getText().toString();
-        String idade = ed2.getText().toString();
+        String data_nascimento = ed2.getText().toString();
+        String uid = ed3.getText().toString();
 
-        if (nome.isEmpty() || idade.isEmpty()) return;
 
-        Map<String, Object> dataToSave = new HashMap<String, Object>();
-        dataToSave.put("nome", model.getAltura());
-        dataToSave.put("data_nascimento", model.getDataNascimento());
-        dataToSave.put("nome", model.getNome());
-        dataToSave.put("num_registros", model.getNum_registros());
-        dataToSave.put("peso_medio", model.getPeso_medio());
-        dataToSave.put("sexo", model.getSexo());
-
+        if (nome.isEmpty() || data_nascimento.isEmpty()) return;
 
         Map<String, Object> dataToSave = new HashMap<String, Object>();
-        dataToSave.put(NOME_KEY, nome);
-        dataToSave.put(IDADE_KEY, idade);
+        dataToSave.put("nome",nome);
+        dataToSave.put("data_nascimento", data_nascimento);
+        dataToSave.put("uid", uid);
+
 
         firestore.collection(TAG).add(dataToSave).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Log.d(TAG, "documento salvo");
-                ed1.setText("");
-                ed2.setText("");
             }
         });
-
-        // Documento específico, serve para configuração
-        docRef.set(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("coleção - pessoas", "documento salvo");
-                ed1.setText("");
-                ed2.setText("");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Falha no salvamento do documento");
-            }
-        });
-
-
     }
 }

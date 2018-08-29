@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private EditText nome, email, senha;
+    private EditText edt_nome, edt_email, edt_senha;
     private TextView msg;
 
 
@@ -38,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        nome = (EditText) findViewById(R.id.edtNome2);
-        email = (EditText) findViewById(R.id.edtEmail2);
-        senha = (EditText) findViewById(R.id.edtSenha);
+        edt_nome = (EditText) findViewById(R.id.edtNome2);
+        edt_email = (EditText) findViewById(R.id.edtEmail2);
+        edt_senha = (EditText) findViewById(R.id.edtSenha);
 
         msg = (TextView) findViewById(R.id.txtMsg);
 
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClicarLogar(View v)
     {
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), senha.getText().toString()).
+        mAuth.signInWithEmailAndPassword(edt_email.getText().toString(), edt_senha.getText().toString()).
                 addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClicarRegistrar(View v)
     {
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), senha.getText().toString()).
+        mAuth.createUserWithEmailAndPassword(edt_email.getText().toString(), edt_senha.getText().toString()).
                 addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -122,8 +123,9 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                     Map<String, Object> user = new HashMap<>();
-                    user.put("nome", nome.getText().toString());
+                    user.put("nome", edt_nome.getText().toString());
                     user.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    user.put("data_nascimento", new Date());
 
                     db.collection("usuario")
                             .add(user)
@@ -131,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     Log.d("LogX", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    edt_nome.setText("");
+                                    edt_senha.setText("");
+                                    edt_nome.setText("");
+
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

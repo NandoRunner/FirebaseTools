@@ -91,7 +91,7 @@ public class ListActivity extends _BaseActivity {
                                 if (usuarioList.get(i).getDoc_id().equals(usuarioModificado.getDoc_id()))
                                 {
                                     usuarioList.get(i).setNome(usuarioModificado.getNome());
-                                    usuarioList.get(i).setIdade(usuarioModificado.getIdade());
+                                    usuarioList.get(i).setDataNascimento(usuarioModificado.getDataNascimento());
                                 }
                             }
                             usuarioListAdapter.notifyDataSetChanged();
